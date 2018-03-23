@@ -1,6 +1,9 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.javafx.jmx.json.JSONException;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import okhttp3.*;
+import sun.plugin2.message.Message;
 
 import java.io.IOException;
 
@@ -25,7 +28,13 @@ public class YouAreEll {
         }
 
 
-
+    public String postMessage(String fromid, String toid, String message) throws JsonProcessingException{
+        ObjectMapper mapper = new ObjectMapper();
+        Messages myMessage = new Messages(fromid, toid, message);
+        String payload = mapper.writeValueAsString(myMessage);
+        String url = "/ids/" + toid + "/messages";
+       return  MakeURLCall(url, "POST", payload);
+    }
 
     public String get_ids() {
         return MakeURLCall("/ids", "GET", "");

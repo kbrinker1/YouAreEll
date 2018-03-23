@@ -13,6 +13,12 @@ public class Messages {
         this.message = message;
     }
 
+    public Messages(String fromid, String toid, String message){
+        this.fromid = fromid;
+        this.toid = toid;
+        this.message = message;
+    }
+
     @Override
     public String toString() {
         return "Messages{" +
