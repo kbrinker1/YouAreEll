@@ -39,10 +39,8 @@ public class YouAreEll {
             }
         } else if (method.equals("PUT")) {
             RequestBody body = RequestBody.create(JSON, jpayload);
-            Request request = new Request.Builder()
-                    .url(myUrl)
-                    .post(body)
-                    .build();
+            Request request = new Request.Builder().url(myUrl).post(body).build();
+
             try (Response response = client.newCall(request).execute()) {
                 return response.body().string();
             } catch (IOException e) {
