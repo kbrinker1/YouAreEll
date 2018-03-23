@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import okhttp3.*;
 
@@ -15,7 +16,16 @@ public class YouAreEll {
         YouAreEll urlhandler = new YouAreEll();
         System.out.println(urlhandler.MakeURLCall("/ids", "GET", ""));
         System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
-    }
+
+
+//            ObjectMapper mapper = new ObjectMapper();
+//            jpayload = mapper.writeValueAsString();
+
+
+        }
+
+
+
 
     public String get_ids() {
         return MakeURLCall("/ids", "GET", "");
@@ -37,7 +47,7 @@ public class YouAreEll {
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
-        } else if (method.equals("PUT")) {
+        } else if (method.equals("POST")) {
             RequestBody body = RequestBody.create(JSON, jpayload);
             Request request = new Request.Builder().url(myUrl).post(body).build();
 
@@ -47,6 +57,7 @@ public class YouAreEll {
                 e.printStackTrace();
             }
         }
+
         return "nada";
     }
 
